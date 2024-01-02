@@ -12,7 +12,7 @@ class LeadForm(FlaskForm):
     phone_number = StringField('Phone Number (+91 not required)', validators=[InputRequired(), Regexp(r'^[0-9]{10}$', message='Invalid Indian phone number format')])
     password = PasswordField('Password (min 6 characters and max 12 characters)', validators=[
         InputRequired(),
-        Regexp(r'^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$', message='Invalid password format'),
+        Regexp(r'^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,12}$', message='Invalid password format'),
         Length(min=6, max=12, message='Password must be at most 12 characters')
     ])
     confirm_password = PasswordField('Confirm Password', validators=[
