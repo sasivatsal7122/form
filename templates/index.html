@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lead Generation Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Lead Generation Form</h1>
+        <form method="post" action="/">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.name.label(class="form-control-label") }}
+                {{ form.name(class="form-control is-invalid" if form.name.errors else "form-control") }}
+                {% for error in form.name.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }}
+                {{ form.email(class="form-control is-invalid" if form.email.errors else "form-control") }}
+                {% for error in form.email.errors %}
+                    {% if 'valid email address' in error %}
+                        <div class="invalid-feedback">Please enter a valid email address (e.g., example@example.com)</div>
+                    {% elif 'required' in error %}
+                        <div class="invalid-feedback">Email is required</div>
+                    {% else %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.phone_number.label(class="form-control-label") }}
+                {{ form.phone_number(class="form-control is-invalid" if form.phone_number.errors else "form-control") }}
+                {% for error in form.phone_number.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.password.label(class="form-control-label") }}
+                {{ form.password(class="form-control is-invalid" if form.password.errors else "form-control") }}
+                {% for error in form.password.errors %}
+                    {% if 'required' in error %}
+                        <div class="invalid-feedback">Password is required</div>
+                    {% else %}
+                        <div class="invalid-feedback">Please enter a password with at least 8 characters, including numbers, and special characters</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.confirm_password.label(class="form-control-label") }}
+                {{ form.confirm_password(class="form-control is-invalid" if form.confirm_password.errors else "form-control") }}
+                {% for error in form.confirm_password.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+</body>
+</html>
